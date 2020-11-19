@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{#- Start imports as #}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+{%- import_yaml tplroot ~ "/osarchmap.yaml" as osarchmap %}
+{%- import_yaml tplroot ~ "/osfamilymap.yaml" as osfamilymap %}
+{%- import_yaml tplroot ~ "/osmap.yaml" as osmap %}
+{%- import_yaml tplroot ~ "/osfingermap.yaml" as osfingermap %}
+
+{#- Retrieve the config dict only once #}
+{%- set _config = salt['config.get'](tplroot, default={}) %}
+
+{%- set defaults = salt['grains.filter_by'](
+      default_settings,
+      default=tplroot,
+      merge=salt['grains.filter_by'](
+        osarchmap,
+        grain='osarch',
+        merge=salt['grains.filter_by'](
+          osfamilymap,
+          grain='os_family',
+          merge=salt['grains.filter_by'](
+            osmap,
+            grain='os',
+            merge=salt['grains.filter_by'](
+              osfingermap,
+              grain='osfinger',
+              merge=salt['grains.filter_by'](
+                _config,
+                default='lookup'
+              )
+            )
+          )
+        )
+      )
+    )
+%}
+
+{%- set config = salt['grains.filter_by'](
+      {'defaults': defaults},
+      default='defaults',
+      merge=_config
+    )
+%}
+
+{# archive handling #}
+{%- if config.pkg.delfin.use_upstream|lower == 'archive' and 'archive' in config.pkg.delfin %}
+
+    {%- if grains.os == 'Windows' %}
+        {%- do config.pkg.delfin.update({'path': config.dir.base ~ "\\bin\\"}) %}
+    {%- else %}
+        {%- do config.pkg.delfin.update({ 'path': '%s/delfin-%s'|format(config.dir.delfin.base, config.pkg.delfin.version) }) %}
+    {%- endif %}
+    {%- set url = '%s/v%s.%s'|format(config.pkg.delfin.uri_a, config.pkg.delfin.version, config.pkg.delfin.suffix) %}
+    {%- if 'source_hash' in config.pkg.delfin.archive and config.pkg.delfin.archive.source_hash %}
+        {%- do config.pkg.delfin.archive.update({'name': config.pkg.delfin.path, 'source': url, 'source_hash': config.pkg.delfin.archive.source_hash}) %}
+    {%- else %}
+        {%- do config.pkg.delfin.archive.update({'name': config.pkg.delfin.path, 'source': url, 'source_hash': url ~ '.sha256'}) %}
+    {%- endif %}
+{%- endif %}
+
+{%- set data = config %}
+
+{#- Post-processing for specific non-YAML customisations #}
+{%- if grains.os == 'MacOS' %}
+{%-   set macos_group = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
+{%-   do delfin.update({'rootgroup': macos_group}) %}
+{%- endif %}

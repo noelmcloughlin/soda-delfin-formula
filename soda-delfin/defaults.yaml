@@ -1,0 +1,91 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+# format: soda-installer
+---
+soda-delfin:
+  # Technical instructions for soda-installer
+  config:
+    delfin:
+      file: '/delfin.conf'
+      content:
+        - [DEFAULT]
+        - api_paste_config = /etc/delfin/api-paste.ini
+        - delfin_cryptor = delfin.cryptor._Base64
+        - api_max_limit = 1000
+        - ''
+        - [database]
+        - connection = sqlite:////var/lib/delfin/delfin.sqlite
+        - db_backend = sqlalchemy
+        - ''
+        - [scheduler]
+        - config_path = /etc/delfin/scheduler_config.json
+        - ''
+        - [KAFKA]
+        - kafka_topic_name = "delfin-kafka"
+        - kafka_ip = 'localhost'
+        - kafka_port = '9092'
+        - ''
+
+  endpoint:
+    delfin:
+      ipv4: 127.0.0.1
+      port: '1234'
+  container:
+    delfin:
+      image: sodafoundation/delfin
+      version: latest
+      env:
+        DELFIN_RABBITMQ_USER: delfinuser
+        DELFIN_RABBITMQ_PASS: delfinpass
+        DELFIN_HOST_IP: '127.0.0.1'
+
+  # Scope instructions for soda-installer
+  supported:
+    - delfin
+  wanted:
+    - delfin
+  depends: []
+
+  # Packaging instructions for soda-installer
+  pkg:
+    delfin:
+      use_upstream: archive
+      version: 1.0.0
+      uri_a: https://github.com/sodafoundation/delfin/archive
+      archive:
+        options: '--strip-components=1'
+        source_hash: 8e1025683160340f41024bd1b47d2d6d619f3c41f16e590ec81eebaf04efd485
+      commands: []
+      suffix: tar.gz
+      deps: []    # see osfamilymap
+
+  service:
+    delfin:
+      name: soda-delfin
+      start: script/start.sh
+      stop: script/kill.sh
+
+  # Miscellaneous
+  identity:
+    rootuser: root
+    rootgroup: root
+
+  linux:
+    altpriority: 0   # zero disables alternatives
+
+  retry_option:
+    delfin:
+      attempts: 3
+      until: true
+      interval: 60
+      splay: 10
+
+  dir:
+    delfin:
+      base: /opt/soda
+      lib: /var/lib/soda/delfin
+      config: /etc/delfin
+      log: /var/log/delfin
+      tmp: /tmp/soda/delfin
+      service: /lib/systemd/system
+  div: '/'

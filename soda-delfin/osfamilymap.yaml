@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os_family'] based logic.
+# You just need to add the key:values for an `os_family` that differ
+# from `defaults.yaml` + `osarch.yaml`.
+# Only add an `os_family` which is/will be supported by the formula.
+#
+# If you do not need to provide defaults via the `os_family` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osfamilymap: {}
+---
+Debian:
+  pkg:
+    delfin:
+      deps:
+        # taken from delfin/requirements.txt
+        - python3-alembic
+        - python3-babel
+        - python3-eventlet 
+        - python3-greenlet 
+        - python3-jsonschema 
+        - python3-oslo.config 
+        - python3-oslo.context
+        - python3-oslo.db
+        - python3-oslo.i18n
+        - python3-oslo.log
+        - python3-oslo.messaging
+        - python3-oslo.middleware
+        - python3-oslo.rootwrap
+        - python3-oslo.serialization
+        - python3-oslo.service
+        - python3-oslo.utils
+        - python3-oslo.concurrency
+        - python3-paramiko
+        - python3-paste
+        - python3-pastedeploy
+        - python3-retrying
+        - python3-routes
+        - python3-six
+        - python3-sqlalchemy
+        - python3-stevedore
+        - python3-tooz
+        - python3-webob
+        - python3-pysnmp4
+        - python3-redis
+        - python3-openssl
+        - python3-apscheduler
+        - python3-flask
+        - python3-kafka
+
+RedHat: {}
+Suse: {}
+Gentoo: {}
+Arch: {}
+Alpine: {}
+FreeBSD: {}
+OpenBSD: {}
+Solaris: {}
+Windows: {}
+MacOS: {}

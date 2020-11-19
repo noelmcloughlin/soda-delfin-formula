@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-control 'TEMPLATE configuration' do
+control 'soda__delfin configuration' do
   title 'should match desired lines'
 
   describe file('/etc/template-formula.conf') do
@@ -26,8 +26,8 @@ control 'TEMPLATE configuration' do
       should include(
         '"tofs": {"files_switch": ["any/path/can/be/used/here", "id", '\
         '"roles", "osfinger", "os", "os_family"], "source_files": '\
-        '{"TEMPLATE-config-file-file-managed": ["example.tmpl.jinja"], '\
-        '"TEMPLATE-subcomponent-config-file-file-managed": '\
+        '{"soda__delfin-config-file-file-managed": ["example.tmpl.jinja"], '\
+        '"soda__delfin-subcomponent-config-file-file-managed": '\
         '["subcomponent-example.tmpl.jinja"]}'
       )
       # rubocop:enable Layout/LineLength
