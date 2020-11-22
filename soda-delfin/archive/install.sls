@@ -8,10 +8,27 @@
         {%- from tplroot ~ "/files/macros.jinja" import format_kwargs with context %}
         {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-soda-delfin-archive-install:
+soda-delfin-archive-install-deps:
         {%- if 'deps' in d.pkg.delfin and d.pkg.delfin.deps %}
   pkg.installed:
     - names: {{ d.pkg.delfin.deps|json }}
+    - reload_modules: true
+    - require_in:
+      - file: soda-delfin-archive-install
+        {%- endif %}
+
+soda-delfin-archive-install:
+        {%- if 'conflicts' in d.pkg.delfin and d.pkg.delfin.conflicts %}
+  pkg.purged:
+    - names: {{ d.pkg.delfin.conflicts|json }}
+    - reload_modules: true
+    - require_in:
+      - file: soda-delfin-archive-install
+        {%- endif %}
+        {%- if 'pips' in d.pkg.delfin and d.pkg.delfin.pips %}
+  pip.installed:
+    - names: {{ d.pkg.delfin.pips|json }}
+    - upgrade: True
     - reload_modules: true
     - require_in:
       - file: soda-delfin-archive-install

@@ -23,7 +23,6 @@ soda-delfin:
         - kafka_ip = 'localhost'
         - kafka_port = '9092'
         - ''
-
   container:
     delfin:
       version: latest
@@ -31,25 +30,13 @@ soda-delfin:
         DELFIN_RABBITMQ_USER: delfinuser
         DELFIN_RABBITMQ_PASS: delfinpass
         DELFIN_HOST_IP: '127.0.0.1'
-
   pkg:
     delfin:
       version: 1.0.0
       archive:
         source_hash: 8e1025683160340f41024bd1b47d2d6d619f3c41f16e590ec81eebaf04efd485
-
   linux:
     altpriority: 0   # zero disables alternatives
-
-  dir:
-    delfin:
-      base: /opt/soda
-      lib: /var/lib/soda/delfin
-      config: /etc/delfin
-      log: /var/log/delfin
-      tmp: /tmp/soda/delfin
-      service: /lib/systemd/system
-
   # Just for testing purposes
   winner: pillar
   added_in_pillar: pillar_value

@@ -18,7 +18,7 @@ soda-delfin-formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-A SaltStack formula to manage SODA Delfin project. Delfin is the SODA Infrastructure Manager project.
+A SaltStack formula to manage SODA Delfin, the SODA Infrastructure Manager project.
 
 
 .. contents:: **Table of Contents**
@@ -64,7 +64,7 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
 Special notes
 -------------
 
-None
+The Delfin daemons require redis and rabbitmq. This installer was verifed manually on CentOS7, Ubuntu18, and OpenSUSE15.
 
 Available states
 ----------------
@@ -96,7 +96,7 @@ via include list.
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will start the soda-delfin service and has a dependency on ``soda-delfin.config``
-via include list.
+via include list.  Requires a running `redis` service.
 
 ``soda-delfin.clean``
 ^^^^^^^^^^^^^^^^^^^^^

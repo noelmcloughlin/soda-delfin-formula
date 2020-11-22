@@ -48,43 +48,63 @@ Debian:
         - python3-apscheduler
         - python3-flask
         - python3-kafka
+      pips: []
 
 RedHat:
-        - python3-alembic
-        - python3-babel
-        - python3-eventlet 
-        - python3-greenlet 
-        - python3-jsonschema 
-        - python3-oslo.config 
-        - python3-oslo.context
-        - python3-oslo.db
-        - python3-oslo.i18n
-        - python3-oslo.log
-        - python3-oslo.messaging
-        - python3-oslo.middleware
-        - python3-oslo.rootwrap
-        - python3-oslo.serialization
-        - python3-oslo.service
-        - python3-oslo.utils
-        - python3-oslo.concurrency
-        - python3-paramiko
-        - python3-paste
-        - python3-pastedeploy
-        - python3-retrying
-        - python3-routes
-        - python3-six
-        - python3-sqlalchemy
-        - python3-stevedore
-        - python3-tooz
-        - python3-webob
-        - python3-pysnmp4
-        - python3-redis
-        - python3-openssl
-        - python3-apscheduler
-        - python3-flask
-        - python3-kafka
+  pkg:
+    delfin:
+      deps:
+        - epel-release
+        - python3
+        - python3-devel
 
-Suse: {}
+Suse:
+  pkg:
+    delfin:
+      conflicts:
+        - python3-greenlet
+        - python3-paramiko
+      deps:
+        - python3
+        - python3-devel
+      pips:
+        - pip
+        - setuptools
+        - pbr
+        - alembic
+        - Babel
+        - eventlet
+        # greenlet
+        - jsonschema
+        - oslo.config
+        - oslo.context
+        - oslo.db
+        - oslo.i18n
+        - oslo.log
+        - oslo.messaging
+        - oslo.middleware
+        - oslo.rootwrap
+        - oslo.serialization
+        - oslo.service
+        - oslo.utils
+        - oslo.concurrency
+        - paramiko
+        - Paste
+        - PasteDeploy
+        - retrying
+        - Routes
+        - six
+        - SQLAlchemy
+        - stevedore
+        - tooz
+        - WebOb
+        - pysnmp
+        - redis
+        - pyopenssl
+        - APScheduler
+        - flask
+        - kafka-python
+
 Gentoo: {}
 Arch: {}
 Alpine: {}
