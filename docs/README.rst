@@ -18,8 +18,8 @@ soda-delfin-formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-A SaltStack formula that is empty. It has dummy content to help with a quick
-start on a new formula and it serves as a style guide.
+A SaltStack formula to manage SODA Delfin project. Delfin is the SODA Infrastructure Manager project.
+
 
 .. contents:: **Table of Contents**
    :depth: 1
@@ -72,80 +72,58 @@ Available states
 .. contents::
    :local:
 
-``soda__delfin``
-^^^^^^^^^^^^
+``soda-delfin``
+^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
-This installs the soda__delfin package,
-manages the soda__delfin configuration file and then
-starts the associated soda__delfin service.
+This installs the soda-delfin archive,
+manages the soda-delfin configuration file and then
+starts the associated soda-delfin service.
 
-``soda__delfin.package``
-^^^^^^^^^^^^^^^^^^^^
+``soda-delfin.archive``
+^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will install the soda__delfin package only.
+This state will install soda-delfin solution from archive file.
 
-``soda__delfin.config``
-^^^^^^^^^^^^^^^^^^^
+``soda-delfin.config``
+^^^^^^^^^^^^^^^^^^^^^^
 
-This state will configure the soda__delfin service and has a dependency on ``soda__delfin.install``
+This state will configure the soda-delfin service and has a dependency on ``soda-delfin.install``
 via include list.
 
-``soda__delfin.service``
-^^^^^^^^^^^^^^^^^^^^
+``soda-delfin.service``
+^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will start the soda__delfin service and has a dependency on ``soda__delfin.config``
+This state will start the soda-delfin service and has a dependency on ``soda-delfin.config``
 via include list.
 
-``soda__delfin.clean``
-^^^^^^^^^^^^^^^^^^
+``soda-delfin.clean``
+^^^^^^^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
-this state will undo everything performed in the ``soda__delfin`` meta-state in reverse order, i.e.
+this state will undo everything performed in the ``soda-delfin`` meta-state in reverse order, i.e.
 stops the service,
 removes the configuration file and
-then uninstalls the package.
+then uninstalls the software.
 
-``soda__delfin.service.clean``
+``soda-delfin.service.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will stop the soda__delfin service and disable it at boot time.
+This state will stop the soda-delfin service and disable it at boot time.
 
-``soda__delfin.config.clean``
+``soda-delfin.config.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the configuration of the soda__delfin service and has a
-dependency on ``soda__delfin.service.clean`` via include list.
+This state will remove the configuration of the soda-delfin service and has a
+dependency on ``soda-delfin.service.clean`` via include list.
 
-``soda__delfin.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``soda-delfin.archive.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the soda__delfin package and has a depency on
-``soda__delfin.config.clean`` via include list.
-
-``soda__delfin.subcomponent``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-*Meta-state (This is a state that includes other states)*.
-
-This state installs a subcomponent configuration file before
-configuring and starting the soda__delfin service.
-
-``soda__delfin.subcomponent.config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will configure the soda__delfin subcomponent and has a
-dependency on ``soda__delfin.config`` via include list.
-
-``soda__delfin.subcomponent.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will remove the configuration of the soda__delfin subcomponent
-and reload the soda__delfin service by a dependency on
-``soda__delfin.service.running`` via include list and ``watch_in``
-requisite.
+This state will remove the soda-delfin archive and has a depency on
+``soda-delfin.config.clean`` via include list.
 
 Testing
 -------
@@ -170,7 +148,7 @@ e.g. ``debian-9-2019-2-py3``.
 ``bin/kitchen converge``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``soda__delfin`` main state, ready for testing.
+Creates the docker instance and runs the ``soda-delfin`` main state, ready for testing.
 
 ``bin/kitchen verify``
 ^^^^^^^^^^^^^^^^^^^^^^

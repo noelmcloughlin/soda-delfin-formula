@@ -89,6 +89,30 @@ soda-delfin-archive-install-managed-service:
 
             {%- endif %}
         {%- endif %}
+
+soda-delfin-archive-install-prometheus-exporter-file:
+  file.managed:
+    - name: {{ d.dir.delfin.lib }}{{ d.div }}delfin_exporter.txt
+    - makedirs: True
+
+soda-delfin-archive-install-api-paste:
+  file.managed:
+    - name: {{ d.dir.delfin.config }}/api-paste.ini
+    - source: {{ d.pkg.delfin.path }}/etc/delfin/api-paste.ini
+    - makedirs: True
+
+soda-delfin-archive-install-delfin.conf:
+  file.managed:
+    - name: {{ d.dir.delfin.config }}/delfin.conf.devs
+    - source: {{ d.pkg.delfin.path }}/etc/delfin/delfin.conf
+    - makedirs: True
+
+soda-delfin-archive-install-scheduler_config:
+  file.managed:
+    - name: {{ d.dir.delfin.config }}/scheduler_config.json
+    - source: {{ d.pkg.delfin.path }}/etc/scheduler_config.json
+    - makedirs: True
+
     {%- else %}
 
 soda-delfin-archive-install-other:

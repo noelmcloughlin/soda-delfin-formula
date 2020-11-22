@@ -22,6 +22,7 @@ soda-delfin-archive-absent:
   file.absent:
     - names:
       - {{ d.dir.delfin.tmp }}
+      - {{ d.dir.delfin.config }}
       - {{ d.dir.delfin.log }}
       - {{ d.pkg.delfin.path }}
         {%- if d.linux.altpriority|int == 0 or grains.os_family in ('Arch', 'MacOS') %}
