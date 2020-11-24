@@ -28,14 +28,16 @@ CentOS Linux-8:
   pkg:
     delfin:
       deps:
+        - gcc
         - epel-release
-        - python
-        - python-devel
+        - python36
+        - python36-devel
 
 CentOS Linux-7:
   pkg:
     delfin:
       deps:
+        - gcc
         - epel-release
         - python3
         - python3-devel
