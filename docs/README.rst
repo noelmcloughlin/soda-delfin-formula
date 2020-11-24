@@ -64,7 +64,8 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
 Special notes
 -------------
 
-The Delfin daemons require redis and rabbitmq. This installer was verifed manually on CentOS7, Ubuntu18, and OpenSUSE15.
+The Delfin daemons require redis and rabbitmq.
+This installer was verifed manually on CentOS7, Ubuntu18, and OpenSUSE15.
 
 Available states
 ----------------
