@@ -5,7 +5,7 @@
 {%- from tplroot ~ "/map.jinja" import data as d with context %}
 
     {%- if grains.kernel == 'Linux' and d.linux.altpriority|int > 0 and grains.os_family not in ('Arch',) %}
-        {%- set sls_archive_install = tplroot ~ '.delfin.archive.install' %}
+        {%- set sls_archive_install = tplroot ~ '.archive.install' %}
 
 include:
   - {{ sls_archive_install }}
