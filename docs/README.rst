@@ -18,7 +18,7 @@ soda-delfin-formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-A SaltStack formula to manage SODA Delfin, the SODA Infrastructure Manager project.
+A SaltStack formula to manage SODA Delfin, the SODA Infrastructure Manager project (https://github.com/sodafoundation/delfin).
 
 
 .. contents:: **Table of Contents**
