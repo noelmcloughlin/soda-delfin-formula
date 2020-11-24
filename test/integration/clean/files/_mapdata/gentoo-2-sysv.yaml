@@ -17,7 +17,7 @@ rootgroup: root
 service:
   name: mtab
 subcomponent:
-  config: /etc/soda__delfin-subcomponent-formula.conf
+  config: /etc/soda-delfin-subcomponent-formula.conf
 tofs:
   files_switch:
   - any/path/can/be/used/here
@@ -27,8 +27,8 @@ tofs:
   - os
   - os_family
   source_files:
-    soda__delfin-config-file-file-managed:
+    soda-delfin-config-file-file-managed:
     - example.tmpl.jinja
-    soda__delfin-subcomponent-config-file-file-managed:
+    soda-delfin-subcomponent-config-file-file-managed:
     - subcomponent-example.tmpl.jinja
 winner: pillar

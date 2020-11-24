@@ -4,6 +4,6 @@ os_family: Debian, RedHat, Suse, Gentoo, Arch, Alpine, FreeBSD, OpenBSD, Solaris
 version: 1.0.0
 release: 1
 minimum_version: 2019.2
-summary: soda__delfin formula
+summary: soda-delfin formula
 description: Formula to use as a template for other formulas
-top_level_dir: soda__delfin
+top_level_dir: soda-delfin
