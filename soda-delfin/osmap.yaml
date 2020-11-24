@@ -14,7 +14,12 @@ Ubuntu: {}
 Raspbian: {}
 Fedora: {}
 CentOS: {}
-Amazon: {}
+Amazon:
+  pkg:
+    delfin:
+      deps:
+        - tar
+        - gzip
 SUSE: {}
 openSUSE: {}
 Funtoo: {}
