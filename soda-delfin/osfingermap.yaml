@@ -24,8 +24,24 @@ Fedora-31: {}
 Fedora-30: {}
 
 # os: CentOS
-CentOS Linux-8: {}
-CentOS Linux-7: {}
+CentOS Linux-8:
+  pkg:
+    delfin:
+      deps:
+        - gcc
+        - epel-release
+        - python36
+        - python36-devel
+
+CentOS Linux-7:
+  pkg:
+    delfin:
+      deps:
+        - gcc
+        - epel-release
+        - python3
+        - python3-devel
+
 CentOS-6: {}
 
 # os: Amazon

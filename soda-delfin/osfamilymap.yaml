@@ -50,13 +50,7 @@ Debian:
         - python3-kafka
       pips: []
 
-RedHat:
-  pkg:
-    delfin:
-      deps:
-        - epel-release
-        - python3
-        - python3-devel
+RedHat: {}    # see osfingermap
 
 Suse:
   pkg:
@@ -65,6 +59,8 @@ Suse:
         - python3-greenlet
         - python3-paramiko
       deps:
+        - tar
+        - gzip
         - python3
         - python3-devel
       pips:
@@ -106,7 +102,45 @@ Suse:
         - kafka-python
 
 Gentoo: {}
-Arch: {}
+Arch:
+  pkg:
+    delfin:
+      deps:
+        - tar
+        - gzip
+      pips:
+        - pip
+        - setuptools
+        - pbr
+        - alembic
+        - Babel
+        - eventlet
+        - greenlet
+        - jsonschema
+        - oslo.config
+        - oslo.context
+        - oslo.db
+        - oslo.i18n
+        - oslo.log
+        - oslo.messaging
+        - oslo.middleware
+        - oslo.rootwrap
+        - oslo.serialization
+        - oslo.service
+        - oslo.utils
+        - oslo.concurrency
+        - paramiko
+        - Paste
+        - PasteDeploy
+        - retrying
+        - Routes
+        - six
+        - SQLAlchemy
+        - stevedore
+        - tooz
+        - WebOb
+        - pysnmp
+
 Alpine: {}
 FreeBSD: {}
 OpenBSD: {}
