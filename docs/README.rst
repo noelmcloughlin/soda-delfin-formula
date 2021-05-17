@@ -3,6 +3,18 @@
 soda-delfin-formula
 ===================
 
+.. list-table::
+   :name: banner-archival-notice
+   :header-rows: 1
+   :widths: 1
+
+   * - ARCHIVAL NOTICE
+   * - This formula has been archived since it has been suggested that it should be targetted for deletion.
+       Once a decision is made, this notice will be updated with the proposed deletion date.
+
+----
+
+
 |img_travis| |img_sr| |img_pc|
 
 .. |img_travis| image:: https://travis-ci.com/saltstack-formulas/soda-delfin-formula.svg?branch=master
